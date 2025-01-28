@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Weather App 🌦️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un proyecto de clima desarrollado con **React**, **TypeScript**, y **Vite**.
 
-Currently, two official plugins are available:
+## Descripción 📋
+Esta aplicación muestra información climática en tiempo real utilizando la API de OpenWeatherMap. El objetivo del proyecto es practicar el desarrollo frontend con TypeScript y React, así como la integración de APIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías utilizadas 🛠️
+- **React**: Biblioteca de interfaz de usuario.
+- **TypeScript**: Tipado estático para JavaScript.
+- **Vite**: Empaquetador rápido y moderno.
+- **Tailwind CSS**: Framework de estilos.
+- **OpenWeatherMap API**: Fuente de datos climáticos.
 
-## Expanding the ESLint configuration
+## Instalación 🚀
+1. Clona este repositorio:
+  ```bash
+  git clone https://github.com/Hagen94/tu-repositorio.git
+  cd tu-repositorio
+2. Instala las dependencias:
+   npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. Configura la API de OpenWeatherMap:
+Crea una cuenta en OpenWeatherMap y obtén tu API Key.
+Crea un archivo .env en la raíz del proyecto y añade tu clave
 
-- Configure the top-level `parserOptions` property like this:
+  VITE_API_KEY=tu_api_key_aqui
+4. Inicia el servidor de desarrollo:
+   npm run dev
+5. Abre la aplicación en tu navegador en http://localhost:5173.
+  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Estado del proyecto 🛠️
+Estado: En desarrollo 🚧.
+Próximas funcionalidades:
+Mostrar un pronóstico extendido de 5 días.
+Función de búsqueda por ciudad.
+Guardar ubicaciones favoritas.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Configuración técnica ⚙️
+React + TypeScript + Vite
+Este proyecto está configurado para utilizar Vite con React y TypeScript. Incluye:
+  - Hot Module Replacement (HMR).
+  - Configuración básica de ESLint con reglas recomendadas.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+## Licencia 📜
+Este proyecto está bajo la licencia MIT.
+
+
+
