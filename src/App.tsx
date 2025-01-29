@@ -1,6 +1,7 @@
 
 
-import './assets/styles/App.css'
+
+import Forecast from './pages/forecast'
 
 function App() {
  
@@ -8,6 +9,7 @@ function App() {
   return (
     <>
     <h1>App</h1>
+    <Forecast />
     </>
   )
 }
