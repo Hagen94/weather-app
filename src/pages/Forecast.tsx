@@ -1,8 +1,9 @@
-import { useState } from "react"
 import {locationIq, weatherApi} from "../api/weather"
 import { LocationIqParams } from "../types/types"
+import {  UseStore } from "../hooks/useZustand"
+import { useStore } from "zustand"
 
-const findLocation = async (city: string) =>{
+const findLocation = async (city) =>{
     try{
         //obtengo la latitud y la longitud
         const response = await locationIq.get("",{
@@ -24,15 +25,14 @@ const findLocation = async (city: string) =>{
 
 const Forecast = () => {
 
-    const [city, setCity] = useState<string>('');
+   const {city, changeCity} = useStore(state => {state})
     
     const handleChange = (e)=>{
         e.preventDefault()
-        setCity(e.target.value)
+        changeCity(e.target.value)
     }
     const handleClick = (e)=>{
         e.preventDefault()
-        console.log(city)
         findLocation(city)
     }
    
