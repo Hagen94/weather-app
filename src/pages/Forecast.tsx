@@ -24,7 +24,7 @@ const findLocation = async (city: string) =>{
 
 const Forecast = () => {
 
-    const [city, setCity] = useState('')
+    const [city, setCity] = useState<string>('');
     
     const handleChange = (e)=>{
         e.preventDefault()

@@ -1,15 +1,16 @@
 
+import WeekWeather from './components/WeekWeather'
+import Forecast from './pages/Forecast'
 
-
-import Forecast from './pages/forecast'
 
 function App() {
  
 
   return (
     <>
-    <h1>App</h1>
+    <h1>Weather app</h1>
     <Forecast />
+    <WeekWeather/>
     </>
   )
 }
