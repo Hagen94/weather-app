@@ -1,3 +1,4 @@
+
 import { Daily } from '../types/types';
 import { WeatherIcon, WeatherWindIcon } from './WeatherIcon';
 

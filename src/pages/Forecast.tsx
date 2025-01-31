@@ -1,9 +1,10 @@
 import {locationIq, weatherApi} from "../api/weather"
+import { useWeatherStore } from "../hooks/useZustand"
 import { LocationIqParams } from "../types/types"
-import {  UseStore } from "../hooks/useZustand"
-import { useStore } from "zustand"
 
-const findLocation = async (city) =>{
+
+const findLocation = async (city, setCityWeather ) =>{
+  
     try{
         //obtengo la latitud y la longitud
         const response = await locationIq.get("",{
@@ -16,6 +17,7 @@ const findLocation = async (city) =>{
         //obtengo la informacion del clima
         const responseWeather = await weatherApi.get(`?latitude=${latitud}&longitude=${longitud}`)
         console.log(responseWeather.data)
+        setCityWeather(responseWeather.data)
         
     }catch(error){
         console.log(error)
@@ -24,16 +26,16 @@ const findLocation = async (city) =>{
 
 
 const Forecast = () => {
-
-   const {city, changeCity} = useStore(state => {state})
+  const {city,  setCity, setCityWeather  } = useWeatherStore()
+  
     
     const handleChange = (e)=>{
         e.preventDefault()
-        changeCity(e.target.value)
+        setCity(e.target.value)
     }
     const handleClick = (e)=>{
         e.preventDefault()
-        findLocation(city)
+        findLocation(city, setCityWeather)
     }
    
   return (
