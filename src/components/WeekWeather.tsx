@@ -5,8 +5,8 @@ import { WeatherIcon, WeatherWindIcon } from './WeatherIcon';
 const WeekWeather: React.FC<Daily>= ({dia, fecha, icono, tempMin, tempMax,  tipoViento, vientoMin, vientoMax}) => {
   return (
     <div>
-        <h1>Week weather</h1>
-        <section>
+       
+        <section style={{backgroundColor:"greenyellow", padding:"0.5rem"}}>
             <p>{dia}</p>
             <p>{fecha}</p>
             <WeatherIcon weatherCode={icono}/>

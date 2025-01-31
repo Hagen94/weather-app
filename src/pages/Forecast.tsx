@@ -40,7 +40,6 @@ const Forecast = () => {
    
   return (
     <div>
-      <h1>Forecast</h1>
       <form onSubmit={handleClick}>
         <label htmlFor="city">Ingrese una ciudad</label>
         <input type="text" id="city" placeholder="city" value={city}  onChange={handleChange}/>
