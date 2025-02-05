@@ -16,7 +16,7 @@ const findLocation = async (city, setCityWeather ) =>{
         const longitud = response.data[0].lon
         //obtengo la informacion del clima
         const responseWeather = await weatherApi.get(`?latitude=${latitud}&longitude=${longitud}`)
-        console.log(responseWeather.data)
+        
         setCityWeather(responseWeather.data)
         
     }catch(error){

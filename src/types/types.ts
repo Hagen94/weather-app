@@ -5,14 +5,15 @@ export interface LocationIqParams{
 }
 
 export interface WeatherApiParams{
-    current_weather: boolean,
+    timezone:string,
     format: string,
     daily: string,
     hourly: string,
+    current:string
 }
 
+
 export type Daily ={
-    dia:string,
     fecha:string,
     icono: number,
     tempMin:number,

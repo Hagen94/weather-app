@@ -7,6 +7,7 @@ export const useWeatherStore = create(
     {
       city:"",
       cityWeather:[],
+      time:""
 
     },
      (set)=>{
@@ -21,6 +22,13 @@ export const useWeatherStore = create(
           cityWeather: newCityWeather,
          }));
       },
+      setTime: (newTime:string) =>{
+        set(()=> ({
+          time: newTime,
+        })
+
+        )
+      }
     }
   }
   )
