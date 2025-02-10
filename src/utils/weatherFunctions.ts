@@ -131,23 +131,20 @@ export function descripciionCielo(cloudcover:number):string{
     return descripcion
 }
 
-//funcion para elegir el modelo.
-export function obtenerModeloMeteorologico(lat:number, lon:number):string {
-    if (lat >= 36 && lat <= 71 && lon >= -30 && lon <= 60) {
-      return "icon_d2"; // Europa (alta resolución)
-    }
-    if (lat >= 35 && lat <= 70 && lon >= -30 && lon <= 40) {
-      return "icon_eu"; // Europa (resolución media)
-    }
-    if (lat >= 24 && lat <= 50 && lon >= -130 && lon <= -60) {
-      return "hrrr"; // EE.UU. (alta resolución)
-    }
-    if (lat >= 15 && lat <= 60 && lon >= -140 && lon <= -50) {
-      return "nam"; // Norteamérica (resolución media)
-    }
-    if (lat >= 40 && lat <= 55 && lon >= -5 && lon <= 10) {
-      return "arome"; // Francia y zonas cercanas
-    }
-    return "gfs"; // Modelo global por defecto
-  }
-  
+
+
+  //iconos open Weather
+
+  export const getWeatherIconUrl = (iconCode:number):string => {
+  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+}
+
+//puntos de rocio
+
+export function calcularPuntoRocio(temp, humedad) {
+  const a = 17.27;
+  const b = 237.7;
+  const gamma = (a * temp) / (b + temp) + Math.log(humedad / 100);
+  return (b * gamma) / (a - gamma);
+}
+

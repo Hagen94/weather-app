@@ -1,9 +1,9 @@
-import {locationIq, weatherApi} from "../api/weather"
+import {locationIq, openHourlyWeatherApi, openWeatherApi} from "../api/weather"
 import { useWeatherStore } from "../hooks/useZustand"
 import { LocationIqParams } from "../types/types"
 
 
-const findLocation = async (city, setCityWeather ) =>{
+const findLocation = async (city, setWeatherCity,setHourlyCityWeather, unidadMedida ) =>{
   
     try{
         //obtengo la latitud y la longitud
@@ -14,11 +14,30 @@ const findLocation = async (city, setCityWeather ) =>{
         })
         const latitud = response.data[0].lat
         const longitud = response.data[0].lon
-        //obtengo la informacion del clima
-        const responseWeather = await weatherApi.get(`?latitude=${latitud}&longitude=${longitud}`)
         
-        setCityWeather(responseWeather.data)
-        
+        const responseOpenWeather = await openWeatherApi('',{
+        params:{
+          lat:latitud,
+          lon:longitud,
+          units: unidadMedida? "imperial": "metric"
+        }
+        })
+        console.log("datos de opencall", responseOpenWeather)
+        const responseWeatherHourly = await openHourlyWeatherApi('',{
+          params:{
+            lat:latitud,
+            lon:longitud,
+            units: unidadMedida? "imperial": "metric"
+
+          }
+        })
+        console.log("datos de forescast", responseWeatherHourly)
+    
+        //daily y current
+        setWeatherCity(responseOpenWeather.data)
+        //hourly
+        setHourlyCityWeather(responseWeatherHourly.data)
+
     }catch(error){
         console.log(error)
     }
@@ -26,7 +45,7 @@ const findLocation = async (city, setCityWeather ) =>{
 
 
 const Forecast = () => {
-  const {city,  setCity, setCityWeather  } = useWeatherStore()
+  const {city, unidadMedida, setUnidad ,  setCity, setWeatherCity, setHourlyCityWeather } = useWeatherStore()
   
     
     const handleChange = (e)=>{
@@ -34,15 +53,24 @@ const Forecast = () => {
         setCity(e.target.value)
     }
     const handleClick = (e)=>{
+      e.preventDefault()
+      setUnidad(!unidadMedida)
+    }
+    const handleSubmit = (e)=>{
         e.preventDefault()
-        findLocation(city, setCityWeather)
+        findLocation(city,setWeatherCity,setHourlyCityWeather, unidadMedida )
     }
    
   return (
     <div>
-      <form onSubmit={handleClick}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="city">Ingrese una ciudad</label>
         <input type="text" id="city" placeholder="city" value={city}  onChange={handleChange}/>
+        <div>
+          <p>Celsius (°C)</p>
+          <input type="checkbox" id="unidadMedida"  onClick={handleClick} placeholder="X"/>
+          <p>Fahrenheit (°F)</p>
+        </div>
         <button type="submit">Search</button>
       </form>
       

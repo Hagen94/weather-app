@@ -2,12 +2,15 @@ import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
 
+
 export const useWeatherStore = create(
   combine(
     {
       city:"",
-      cityWeather:[],
-      time:""
+      weatherCity:[],
+      hourlyCityWeather:[],
+      time:"",
+      unidadMedida:false,
 
     },
      (set)=>{
@@ -17,9 +20,14 @@ export const useWeatherStore = create(
           city: newCity,
          }));
       },
-      setCityWeather: (newCityWeather) => {
+      setWeatherCity: (newCityWeather) => {
         set(() => ({ 
-          cityWeather: newCityWeather,
+          weatherCity: newCityWeather,
+         }));
+      },
+      setHourlyCityWeather: (newHourlyCityWeather) => {
+        set(() => ({ 
+          hourlyCityWeather: newHourlyCityWeather,
          }));
       },
       setTime: (newTime:string) =>{
@@ -28,7 +36,14 @@ export const useWeatherStore = create(
         })
 
         )
-      }
+      },
+      setUnidad: (newUnidad:boolean) =>{
+        set(()=> ({
+          unidadMedida: newUnidad,
+        })
+
+        )
+      },
     }
   }
   )

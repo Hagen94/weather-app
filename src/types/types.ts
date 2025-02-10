@@ -11,7 +11,22 @@ export interface WeatherApiParams{
     hourly: string,
     current:string
 }
-
+export interface cityWeather {
+        current: Record<string, any>;
+        current_units: Record<string, string>;
+        daily: Record<string, any>;
+        daily_units: Record<string, string>;
+        hourly: Record<string, any>;
+        hourly_units: Record<string, string>;
+        elevation: number;
+        generationtime_ms: number;
+        latitude: number;
+        longitude: number;
+        timezone: string;
+        timezone_abbreviation: string;
+        utc_offset_seconds: number;
+}
+  
 
 export type Daily ={
     fecha:string,
